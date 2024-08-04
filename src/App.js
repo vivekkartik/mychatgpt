@@ -8,7 +8,6 @@ function App() {
   const [apiKey,setApiKey] = useState('');
   const handleSubmit = async(e) =>{
     e.preventDefault();
-    console.log(apiKey)
      await fetchApiKey(apiKey);
      const result = await generateText(promt)
     setOutput(result)

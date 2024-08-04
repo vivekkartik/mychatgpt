@@ -2,18 +2,18 @@ import OpenAI from 'openai';
 let apiKey 
 export const fetchApiKey = async (apiKeyFromInput)=>{
  apiKey = String(apiKeyFromInput)
-}
-if (!apiKey) {
-  console.error('API_KEY is not set. Please check your .env file.');
+    if (!apiKey) {
+    console.error('API_KEY is not set. Please check your .env file.');
+    }
 }
 
-const openai = new OpenAI({
-  apiKey: apiKey,
-  dangerouslyAllowBrowser: true
-});
 
 export const generateText = async (promt) => {
-  try {
+    try {
+      const openai = new OpenAI({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser: true
+      });
     const response = await openai.chat.completions.create({
       model: 'gpt-4-0125-preview',
       messages: [
@@ -26,7 +26,7 @@ export const generateText = async (promt) => {
     });
 
     if (response.choices && response.choices.length > 0) {
-      return response.choices[0].message.content;
+      return Promise.resolve(response.choices[0].message.content);
     } 
   } catch (err) {
     console.error('Error generating text:', err.response ? err.response.data : err.message);
