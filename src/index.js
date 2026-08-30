@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Gpt from './pages/gpt/Gpt';
+import Rag from './pages/rag/rag';
+import Home from './pages/home/home';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/gpt" element={<Gpt />} />
+        <Route path="/rag" element={<Rag />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="*" element={<Navigate to="/home" replace />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

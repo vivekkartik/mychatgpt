@@ -10,6 +10,8 @@ export const fetchApiKey = async (apiKeyFromInput)=>{
 
 export const generateText = async (promt) => {
     try {
+      console.log('API Key:', apiKey);
+      console.log('Prompt:', promt);
       const openai = new OpenAI({
         apiKey: apiKey,
         dangerouslyAllowBrowser: true
